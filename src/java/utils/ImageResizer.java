@@ -36,7 +36,7 @@ public class ImageResizer {
         String destinationPath=folderPath+"\\thumbnail_"+fileName;
         int newWidth=600;
         int newHeight=450;
-        resizeAndSave(sourcePath, destinationPath, newHeight, newHeight);
+        resizeAndSave(sourcePath, destinationPath, newWidth, newHeight);
     }
     
     /**
