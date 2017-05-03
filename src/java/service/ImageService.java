@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.StreamingOutput;
@@ -37,13 +38,19 @@ import utils.ImageResizer;
 public class ImageService {
     
     @GET
-    @Path("getsample")
+    @Path("get/{name}")
     @Produces("image/jpg")
-    public File getImage(){
-        String folderPath="C:\\Users\\Tien\\Documents\\NetBeansProjects\\ImageSevice\\web\\res\\img";
-        String fileName="image.jpg";
-        ImageResizer.processThumbnail(folderPath, fileName);
-        return new File("C:\\Users\\Tien\\Documents\\NetBeansProjects\\ImageSevice\\web\\res\\img\\thumbnail_image.jpg");
+    public File getImage(@PathParam("name") String fileName){
+        String folderPath="C:\\img";
+        return new File(folderPath+"\\"+fileName);
+    }
+    
+    @GET
+    @Path("getThumbnail/{name}")
+    @Produces("image/jpg")
+    public File getThumbnail(@PathParam("name") String fileName){
+        String folderPath="C:\\img";
+        return new File(folderPath+"\\thumbnail_"+fileName);
     }
     
     @GET
