@@ -1,3 +1,4 @@
+package utils;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -8,9 +9,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.coobird.thumbnailator.Thumbnails;
-import org.imgscalr.Scalr;
-import org.imgscalr.Scalr.Method;
-
 
 
 

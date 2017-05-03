@@ -12,5 +12,9 @@ and open the template in the editor.
     </head>
     <body>
         <div>TODO write content</div>
+        <form action="service/image/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            <input type="submit" value="Upload">
+        </form>
     </body>
 </html>
