@@ -27,50 +27,6 @@ import org.imgscalr.Scalr.Method;
  */
 public class ImageResizer {
     
-    public static void resizeImageUsingGraphics2D(){
-        
-        int newWidth = 400;
-        int newHeight = 300;
-        
-        File imageFile = new File("C:\\Users\\Tien\\Documents\\NetBeansProjects\\WebApplication1\\web\\image.jpg");
-        File outputFile = new File("C:\\Users\\Tien\\Documents\\NetBeansProjects\\WebApplication1\\web\\resizedImage.jpg");
-        
-        try {
-            BufferedImage orignalImage = ImageIO.read(imageFile);
-            
-            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
-            Graphics2D resizedGraphic = resizedImage.createGraphics();
-            
-            resizedGraphic.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-            resizedGraphic.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-            resizedGraphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            resizedGraphic.drawImage(orignalImage, 0, 0, newWidth, newHeight, null);
-            resizedGraphic.dispose();
-
-            
-            ImageIO.write(resizedImage, "png", outputFile);
-        } catch (IOException ex) {
-            Logger.getLogger(ImageResizer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void resizeImageUsingScalr(){
-        int newWidth = 600;
-        int newHeight = 450;
-
-        File imageFile = new File("C:\\Users\\Tien\\Documents\\NetBeansProjects\\WebApplication1\\web\\image.jpg");
-        File outputFile = new File("C:\\Users\\Tien\\Documents\\NetBeansProjects\\WebApplication1\\web\\resizedImage.jpg");
-        
-        try {
-            BufferedImage orignalImage = ImageIO.read(imageFile);
-
-            BufferedImage resizedImage = Scalr.resize(orignalImage, Method.ULTRA_QUALITY, newHeight, newWidth);
-            ImageIO.write(resizedImage, "png", outputFile);
-        } catch (IOException ex) {
-            Logger.getLogger(ImageResizer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
     public static void resizeAndSave(String sourcePath, String destinationPath, int newWidth, int newHeight){
 
         try {
