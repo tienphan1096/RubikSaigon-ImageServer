@@ -25,6 +25,17 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 public class ImageResizer {
     
+    public static void resizeAll(){
+        String imageFolderPath = "C:\\img";
+        File imageFolder = new File(imageFolderPath);
+        File[] fileList = imageFolder.listFiles();
+        for (int i = 0; i < fileList.length; i++) {
+            if(!isThumbnail(fileList[i].getName()) && !thumbnailExists(imageFolderPath, fileList[i].getName())){
+                ImageResizer.processThumbnail(imageFolderPath, fileList[i].getName());
+            }
+        }
+    }
+    
     /**
      * Method to create a thumbnail of an image, save it under thumbnail_<image name> in the same folder.
      * 
@@ -34,9 +45,28 @@ public class ImageResizer {
     public static void processThumbnail(String folderPath, String fileName){
         String sourcePath=folderPath+"\\"+fileName;
         String destinationPath=folderPath+"\\thumbnail_"+fileName;
-        int newWidth=600;
-        int newHeight=450;
-        resizeAndSave(sourcePath, destinationPath, newWidth, newHeight);
+        
+        if(!isThumbnail(fileName) && !thumbnailExists(folderPath, fileName)){
+            int newWidth = 600;
+            int newHeight = 450;
+            resizeAndSave(sourcePath, destinationPath, newWidth, newHeight);
+        }
+    }
+    
+    private static boolean thumbnailExists(String folderPath, String fileName){
+        String destinationPath=folderPath+"\\thumbnail_"+fileName;
+        File thumbnailFile=new File(destinationPath);
+        if(thumbnailFile.exists()){
+            return true;
+        }else{
+            System.out.println(fileName);
+            return false;
+        }
+    }
+    
+    private static boolean isThumbnail(String fileName){
+        System.out.println(fileName.substring(0, 10));
+        return (fileName.substring(0, 10).equals("thumbnail_"));
     }
     
     /**

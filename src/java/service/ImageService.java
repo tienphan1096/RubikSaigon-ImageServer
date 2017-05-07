@@ -100,6 +100,19 @@ public class ImageService {
         }
     }
     
+    @GET
+    @Path("resizeAll")
+    @Produces(MediaType.TEXT_PLAIN)
+    public StreamingOutput resizeAll(){
+        ImageResizer.resizeAll();
+        return new StreamingOutput() {
+            @Override
+            public void write(OutputStream out) throws IOException, WebApplicationException {
+                out.write("All images without thumbnails have been processed".getBytes()); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+    }
+    
     private void saveToFile(InputStream uploadedFileStream, String uploadedFileLocation) throws FileNotFoundException, IOException {
         
         int read=0;
